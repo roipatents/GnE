@@ -1,12 +1,12 @@
 # GnE
 
-##Overview
+## Overview
 
 Pronounced “Genie”, the Gender-Name Estimator uses the data from the
 World Gender-Name Dictionary 2.0 to determine the likely gender of an
 individual based upon their first name and country of origin.  
 
-##Limitations, Cautions, Assumptions and License
+## Limitations, Cautions, Assumptions and License
 
 - These results are only a launching point for future analysis and
   discussions and should be considered against other sources of data,
@@ -21,7 +21,7 @@ individual based upon their first name and country of origin.
   tables. Licensed under the Creative Commons CC-BY-SA 4.0 license -
   https://creativecommons.org/licenses/by-sa/4.0/  
 
-##Citations
+## Citations
 
 <dl>
   <dt>WIPO</dt>
