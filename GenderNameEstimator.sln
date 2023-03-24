@@ -1,0 +1,68 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1704.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{CA8E7749-7BF5-4E97-A7CC-D685C169E09D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenderNameEstimator.Tools", "src\GenderNameEstimator.Tools\GenderNameEstimator.Tools.csproj", "{DCEBDF02-6496-48B1-AF19-E4630C4BF70C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenderNameEstimator.Tools.Tests", "test\GenderNameEstimator.Tools.Tests\GenderNameEstimator.Tools.Tests.csproj", "{1382621D-68F4-4317-8D61-604E86C122B9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4E2EFD34-E36E-4B8F-A1AB-2798FEFBAE2F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenderNameEstimator.CommandLine", "src\GenderNameEstimator.CommandLine\GenderNameEstimator.CommandLine.csproj", "{0D75D345-7767-4CA7-854D-41A45E3BF71D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenderNameEstimator.UI.Mac", "src\GenderNameEstimator.UI.Mac\GenderNameEstimator.UI.Mac.csproj", "{8F24FACB-CE7E-4637-9817-E311645B4FFE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DCEBDF02-6496-48B1-AF19-E4630C4BF70C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCEBDF02-6496-48B1-AF19-E4630C4BF70C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCEBDF02-6496-48B1-AF19-E4630C4BF70C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCEBDF02-6496-48B1-AF19-E4630C4BF70C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1382621D-68F4-4317-8D61-604E86C122B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1382621D-68F4-4317-8D61-604E86C122B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1382621D-68F4-4317-8D61-604E86C122B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1382621D-68F4-4317-8D61-604E86C122B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D75D345-7767-4CA7-854D-41A45E3BF71D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D75D345-7767-4CA7-854D-41A45E3BF71D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D75D345-7767-4CA7-854D-41A45E3BF71D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D75D345-7767-4CA7-854D-41A45E3BF71D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F24FACB-CE7E-4637-9817-E311645B4FFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F24FACB-CE7E-4637-9817-E311645B4FFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F24FACB-CE7E-4637-9817-E311645B4FFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F24FACB-CE7E-4637-9817-E311645B4FFE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {80766CBC-E38B-441F-A9AE-A290C1F01BF0}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1382621D-68F4-4317-8D61-604E86C122B9} = {CA8E7749-7BF5-4E97-A7CC-D685C169E09D}
+		{DCEBDF02-6496-48B1-AF19-E4630C4BF70C} = {4E2EFD34-E36E-4B8F-A1AB-2798FEFBAE2F}
+		{0D75D345-7767-4CA7-854D-41A45E3BF71D} = {4E2EFD34-E36E-4B8F-A1AB-2798FEFBAE2F}
+		{8F24FACB-CE7E-4637-9817-E311645B4FFE} = {4E2EFD34-E36E-4B8F-A1AB-2798FEFBAE2F}
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		Policies = $0
+		$0.DotNetNamingPolicy = $1
+		$1.DirectoryNamespaceAssociation = PrefixedHierarchical
+		$0.TextStylePolicy = $2
+		$2.inheritsSet = null
+		$2.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $3
+		$3.scope = text/x-csharp
+		$0.TextStylePolicy = $4
+		$4.FileWidth = 80
+		$4.TabsToSpaces = True
+		$4.scope = text/plain
+		version = 1.0.0
+	EndGlobalSection
+EndGlobal

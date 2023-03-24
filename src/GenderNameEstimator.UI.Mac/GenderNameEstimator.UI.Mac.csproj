@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net7.0-macos</TargetFramework>
+		<OutputType>Exe</OutputType>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>true</ImplicitUsings>
+		<SupportedOSPlatformVersion>10.14</SupportedOSPlatformVersion>
+		<ReleaseVersion>1.0.0</ReleaseVersion>
+		<ApplicationTitle>GnE</ApplicationTitle>
+		<ApplicationId>com.roipatents.gender-name-estimator</ApplicationId>
+		<ApplicationIdGuid>3E999005-587F-4B96-AF19-F7A9BFF99512</ApplicationIdGuid>
+		<ApplicationDisplayVersion>1.0.0</ApplicationDisplayVersion>
+		<ApplicationVersion>1</ApplicationVersion>
+		<AssemblyName>GnE</AssemblyName>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+		<CreatePackage>false</CreatePackage>
+		<UseSGen>false</UseSGen>
+		<LinkMode>None</LinkMode>
+		<WarningLevel>4</WarningLevel>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+		<CreatePackage>true</CreatePackage>
+		<UseSGen>false</UseSGen>
+		<LinkMode>None</LinkMode>
+		<DebugSymbols>true</DebugSymbols>
+		<WarningLevel>4</WarningLevel>
+	</PropertyGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\GenderNameEstimator.Tools\GenderNameEstimator.Tools.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0" />
+	</ItemGroup>
+	<ItemGroup>
+		<BundleResource Include="Credits.rtfd\IMG.png" />
+		<BundleResource Include="Credits.rtfd\TXT.rtf" />
+	</ItemGroup>
+	<Target Name="_SetPublishFolderTypeAssemblyOnCsvFileItems" BeforeTargets="_ComputePublishLocation">
+		<ItemGroup>
+			<ResolvedFileToPublish Update="@(ResolvedFileToPublish)" Condition="'%(ResolvedFileToPublish.Extension)' == '.csv' And '%(ResolvedFileToPublish.PublishFolderType)' == ''" PublishFolderType="Assembly" />
+		</ItemGroup>
+	</Target>
+</Project>
