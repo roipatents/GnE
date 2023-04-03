@@ -71,7 +71,7 @@ public class Processor
     {
         if (!string.IsNullOrEmpty(record.FirstName))
         {
-            _data[$"{record.FirstName}\u001F{record.CountryCode}"] = record;
+            _data[$"{record.FirstName.Trim()}\u001F{record.CountryCode?.Trim()}"] = record;
         }
     }
 
@@ -83,7 +83,7 @@ public class Processor
 
     public DataRecord GetDataRecord(string? firstName, string? countryCode)
     {
-        return _data.TryGetValue($"{firstName}\u001F{countryCode}", out var record)
+        return _data.TryGetValue($"{firstName?.Trim()}\u001F{countryCode?.Trim()}", out var record)
             ? record
             : DataRecord.NotFound;
     }

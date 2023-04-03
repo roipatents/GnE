@@ -6,7 +6,7 @@
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>true</ImplicitUsings>
 		<SupportedOSPlatformVersion>10.14</SupportedOSPlatformVersion>
-		<ReleaseVersion>1.0.0</ReleaseVersion>
+		<ReleaseVersion>1.0.1</ReleaseVersion>
 		<ApplicationTitle>GnE</ApplicationTitle>
 		<ApplicationId>com.roipatents.gender-name-estimator</ApplicationId>
 		<ApplicationIdGuid>3E999005-587F-4B96-AF19-F7A9BFF99512</ApplicationIdGuid>
