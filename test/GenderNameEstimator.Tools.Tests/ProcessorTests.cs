@@ -132,8 +132,8 @@ pat,US,M,0.5
 
     private static IEnumerable<TestCaseData> ProcessXlsxTestCases()
     {
-        var summary = @"GnE Results
-Generated,March 24, 2023
+        var summary = $@"GnE Results
+Generated,{DateTime.Today:MMMM d, yyyy}
 Dictionary,WIPO World Gender-Name Dictionary 2.0
 Data source,Sheet 1
 Columns Used,First Name = 'first', Country Code = 'country', Disclosure ID = unused, Person ID = unused
@@ -341,6 +341,22 @@ Pat,US,3,I,0.5
 
 ",
                 summaryNoHeaders
+            }
+        };
+        yield return new TestCaseData(@"
+first,country,other
+ John , US ,1
+ Mary,US ,2
+Pat , US,3", true)
+        {
+            TestName = "Standard CSV w/ Headers w/ Spaces" + SUFFIX,
+            ExpectedResult = new[] {
+                @"
+first,country,other,Gender,Accuracy
+ John , US ,1,M,1
+ Mary,US ,2,F,1
+Pat , US,3,I,0.5",
+                summary
             }
         };
     }
