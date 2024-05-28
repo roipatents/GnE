@@ -108,7 +108,7 @@ The following column roles are defined:
 &emsp;&emsp;This role is optional and is used to unqiuely identify a person when generating summary statistics.
 &emsp;&emsp;If it is not provided, each row is considered a unique person.
 
-3.&emsp;Disclosure / Patent ID
+4.&emsp;Disclosure / Patent ID
 &emsp;&emsp;This role is optional and is used to unqiuely identify a disclosure / patent when generating summary statistics.
 &emsp;&emsp;If it is not provided, each row is considered a unique disclosure / patent.",
             ViewController = sourceColumnChooser,
