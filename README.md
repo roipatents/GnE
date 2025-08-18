@@ -1,6 +1,6 @@
 # GnE
 
-[Download the latest version...](../../raw/main/GnE-1.0.1.pkg)
+[Download the latest version...](../../raw/main/GnE-1.0.2.pkg)
 ## Overview
 
 Pronounced “Genie”, the Gender-Name Estimator uses the data from the
