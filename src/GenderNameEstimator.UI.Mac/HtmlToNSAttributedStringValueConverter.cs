@@ -1,17 +1,17 @@
 ﻿namespace GenderNameEstimator.UI.Mac;
 
-[Register(nameof(HtmlToNSAttributedStringValueConverter))]
-public class HtmlToNSAttributedStringValueConverter : NSValueTransformer
+[Register(nameof(HtmlToNsAttributedStringValueConverter))]
+public class HtmlToNsAttributedStringValueConverter : NSValueTransformer
 {
-    public HtmlToNSAttributedStringValueConverter() : base()
+    public HtmlToNsAttributedStringValueConverter()
     {
     }
 
-    public HtmlToNSAttributedStringValueConverter(NSObjectFlag t) : base(t)
+    public HtmlToNsAttributedStringValueConverter(NSObjectFlag t) : base(t)
     {
     }
 
-    public HtmlToNSAttributedStringValueConverter(IntPtr handle) : base(handle)
+    public HtmlToNsAttributedStringValueConverter(IntPtr handle) : base(handle)
     {
     }
 
@@ -28,7 +28,7 @@ public class HtmlToNSAttributedStringValueConverter : NSValueTransformer
         color = (color ?? NSColor.Label).UsingColorSpace(NSColorSpace.CalibratedRGB);
 #pragma warning restore CA1422 // Validate platform compatibility
         color.GetRgba(out var r, out var g, out var b, out _);
-        html = $"<span style=\"font-family: {font.DisplayName}; font-size: {font.PointSize * 1.1}px; color: #{ToHexByte(r)}{ToHexByte(g)}{ToHexByte(b)}\">{html?.Replace("\n", "<br/>\n")}</span>";
+        html = $"<span style=\"font-family: {font!.DisplayName}; font-size: {font.PointSize * 1.1}px; color: #{ToHexByte(r)}{ToHexByte(g)}{ToHexByte(b)}\">{html.Replace("\n", "<br/>\n")}</span>";
         return NSAttributedString.CreateWithHTML(NSData.FromString(html), out _);
     }
 

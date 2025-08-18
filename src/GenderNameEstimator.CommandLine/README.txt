@@ -30,8 +30,8 @@ Options:
   -s, --summary <summary>                                                                      The path to the output summary file.  It defaults to the name of the input file with "-appendend.txt" in place of the extension.  This option only 
                                                                                                applies to CSV processing
   -n, --nh, --no-headers                                                                       Indicates that the input file does not have a header row
-  --rows-to-skip, --skip <rows-to-skip>                                                        The number of input rows to skip.  It only applies to XSLX files and must be >= 0 [default: 0]
-  --rows-to-trim, --trim <rows-to-trim>                                                        The number of input rows to trim from the end of the data set.  It only applies to XSLX files and must be >= 0 [default: 0]
-  -w, --sheet, --worksheet <worksheet>                                                         Indicates the name or index of the worksheet to process.  It only applies to XSLX files.  By default, the active worksheet in the XLSX file is used
+  --rows-to-skip, --skip <rows-to-skip>                                                        The number of input rows to skip.  It only applies to XLSX files and must be >= 0 [default: 0]
+  --rows-to-trim, --trim <rows-to-trim>                                                        The number of input rows to trim from the end of the data set.  It only applies to XLSX files and must be >= 0 [default: 0]
+  -w, --sheet, --worksheet <worksheet>                                                         Indicates the name or index of the worksheet to process.  It only applies to XLSX files.  By default, the active worksheet in the XLSX file is used
   --version                                                                                    Show version information
   -?, -h, --help                                                                               Show help and usage information

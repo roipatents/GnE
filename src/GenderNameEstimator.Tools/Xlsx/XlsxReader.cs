@@ -6,7 +6,7 @@ public class XlsxReader : TextRecordReader
 {
     static XlsxReader()
     {
-        ExcelPackage.LicenseContext ??= LicenseContext.Commercial;
+        ExcelPackage.LicenseContext ??= LicenseContext.NonCommercial;
     }
 
     private int _headerIndex;

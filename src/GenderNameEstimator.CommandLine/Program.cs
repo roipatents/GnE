@@ -103,14 +103,14 @@ var rowsToSkipOption = new Option<int>(new[]
 {
     "--rows-to-skip",
     "--skip",
-}, () => 0, "The number of input rows to skip.  It only applies to XSLX files and must be >= 0");
+}, () => 0, "The number of input rows to skip.  It only applies to XLSX files and must be >= 0");
 rootCommand.Add(rowsToSkipOption);
 
 var rowsToTrimOption = new Option<int>(new[]
 {
     "--rows-to-trim",
     "--trim",
-}, () => 0, "The number of input rows to trim from the end of the data set.  It only applies to XSLX files and must be >= 0");
+}, () => 0, "The number of input rows to trim from the end of the data set.  It only applies to XLSX files and must be >= 0");
 rootCommand.Add(rowsToTrimOption);
 
 var worksheetOption = new Option<string>(new[]
@@ -119,7 +119,7 @@ var worksheetOption = new Option<string>(new[]
     "--sheet",
     "--w",
     "-w"
-}, "Indicates the name or index of the worksheet to process.  It only applies to XSLX files.  By default, the active worksheet in the XLSX file is used");
+}, "Indicates the name or index of the worksheet to process.  It only applies to XLSX files.  By default, the active worksheet in the XLSX file is used");
 rootCommand.Add(worksheetOption);
 
 var fileArgument = new Argument<FileInfo>("file", "The input file to process");
@@ -160,11 +160,11 @@ worksheetOption.AddValidator(result =>
     switch (result.GetValueForArgument(fileArgument).Extension.ToLower())
     {
         case "":
-        case ".xslx":
+        case ".xlsx":
             break;
 
         default:
-            result.ErrorMessage = "This option is only valid for XSLX files";
+            result.ErrorMessage = "This option is only valid for XLSX files";
             break;
     }
 });
@@ -178,11 +178,11 @@ rowsToSkipOption.AddValidator(result =>
     switch (result.GetValueForArgument(fileArgument)?.Extension.ToLower() ?? "")
     {
         case "":
-        case ".xslx":
+        case ".xlsx":
             break;
 
         default:
-            result.ErrorMessage = "This option is only valid for XSLX files";
+            result.ErrorMessage = "This option is only valid for XLSX files";
             break;
     }
 });
@@ -196,11 +196,11 @@ rowsToTrimOption.AddValidator(result =>
     switch (result.GetValueForArgument(fileArgument)?.Extension.ToLower() ?? "")
     {
         case "":
-        case ".xslx":
+        case ".xlsx":
             break;
 
         default:
-            result.ErrorMessage = "This option is only valid for XSLX files";
+            result.ErrorMessage = "This option is only valid for XLSX files";
             break;
     }
 });
