@@ -1,7 +1,6 @@
-# GnE
+# **GnE – Gender-Name Estimator**
 
-[Download the latest version...](../../raw/main/GnE-1.0.2.pkg)
-## Overview
+## **Overview**
 
 Pronounced “Genie”, the Gender-Name Estimator uses the data from the
 World Gender-Name Dictionary 2.0 to determine the likely gender of an
@@ -19,8 +18,12 @@ individual based upon their first name and country of origin.
   inventor data, and we provide no guarantee of quality or accuracy.
 
 - No claim of copyright is made in any of the WIPO supplied data lookup
-  tables. Licensed under the Creative Commons CC-BY-SA 4.0 license -
-  https://creativecommons.org/licenses/by-sa/4.0/  
+  tables. Licensed under the Creative Commons CC0 1.0 Universal -
+  https://creativecommons.org/publicdomain/zero/1.0/
+
+## **License**
+
+This project is licensed under the MIT License. See the LICENSE.md file for details.
 
 ## Citations
 
@@ -30,3 +33,8 @@ individual based upon their first name and country of origin.
     <a href="https://www.wipo.int/publications/en/details.jsp?id=4554">https://www.wipo.int/publications/en/details.jsp?id=4554</a>
   </dd>
 </dl>
+
+## **Attribution**
+
+GnE was created and is maintained by **Richardson Oliver LLP**.
+
