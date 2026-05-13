@@ -1,0 +1,7 @@
+schema_version: 1
+short_description: macOS (C#) Gender-Name Estimator that predicts likely gender from first name and country using World Gender-Name Dictionary 2.0 data.
+hidden: false
+mdm_deploy: false
+# Allowed: One off, Preproduction, Production, Deprecated
+readiness: Production
+primary_owner: ttrias@richardsonoliver.com
