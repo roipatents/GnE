@@ -135,7 +135,11 @@ public class WizardOutlineItem : NSObject, IEnumerable<WizardOutlineItem>
         }
         while (++index < Children.Count)
         {
-            yield return Children[index];
+            var child = Children[index];
+            if (child is not null)
+            {
+                yield return child;
+            }
         }
     }
 
@@ -189,7 +193,11 @@ public class WizardOutlineItem : NSObject, IEnumerable<WizardOutlineItem>
         }
         do
         {
-            yield return Children[--index];
+            var child = Children[--index];
+            if (child is not null)
+            {
+                yield return child;
+            }
         }
         while (index > 0);
     }

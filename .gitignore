@@ -4,3 +4,7 @@
 **/.vs/
 **/packages/
 *.user
+/artifacts/
+/appsettings.Secrets.json
+/appsettings.Secrets.json.roi-op-injected.stamp
+/appsettings.Secrets.json.roi-op-injected.lock/

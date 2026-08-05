@@ -20,7 +20,7 @@ public abstract class WizardOutlineViewController : ViewControllerWithObservers
     public static T Instantiate<T>() where T : WizardOutlineViewController
     {
 #pragma warning disable CA1416 // Validate platform compatibility
-        return (T)NSStoryboard.FromName("Main", null).InstantiateController(typeof(T).Name, null);
+        return (T)NSStoryboard.FromName("Main", null).InstantiateController2(typeof(T).Name, null);
 #pragma warning restore CA1416 // Validate platform compatibility
     }
 

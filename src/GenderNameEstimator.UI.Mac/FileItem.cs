@@ -72,7 +72,7 @@ public class FileItem : NSObject
         }
     }
 
-    public override bool Equals(object obj)
+    public override bool Equals(object? obj)
     {
         return Equals(obj as FileItem);
     }

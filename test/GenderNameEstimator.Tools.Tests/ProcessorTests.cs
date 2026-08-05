@@ -7,7 +7,7 @@ public partial class ProcessorTests
 {
     static ProcessorTests()
     {
-        ExcelPackage.LicenseContext ??= LicenseContext.Commercial;
+        EpplusLicense.Configure();
     }
 
     private const string SUFFIX = ": {m}{p}";
@@ -127,7 +127,9 @@ pat,US,M,0.5
 
         result.Seek(0, SeekOrigin.Begin);
         using var reader = new StreamReader(result, Encoding.UTF8);
-        return EmptyCommasRegex().Replace(reader.ReadToEnd(), "");
+        // Worksheet dimensions can include trailing blank rows. They are not
+        // records, so exclude them from the text representation used by tests.
+        return EmptyCommasRegex().Replace(reader.ReadToEnd(), "").TrimEnd();
     }
 
     private static IEnumerable<TestCaseData> ProcessXlsxTestCases()

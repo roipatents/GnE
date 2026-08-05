@@ -131,18 +131,21 @@ For CSV files, a ""-appended"" suffixed file will be created with the additional
 
         sourceFileChooser.Completed += (sender, e) =>
         {
-            if (!string.IsNullOrEmpty(_model.SourceFileChooserModel.File?.Name))
+            var selectedFilename = _model.SourceFileChooserModel.File?.Name;
+            if (!string.IsNullOrEmpty(selectedFilename))
             {
-#pragma warning disable CS8604 // Possible null reference argument.
-                NSDocumentController.SharedDocumentController.NoteNewRecentDocumentURL(new Uri(_model.SourceFileChooserModel.File.Name));
-#pragma warning restore CS8604 // Possible null reference argument.
+                var selectedUrl = NSUrl.FromFilename(selectedFilename);
+                if (selectedUrl is not null)
+                {
+                    NSDocumentController.SharedDocumentController.NoteNewRecentDocumentURL(selectedUrl);
+                }
             }
             SelectItem(gneDataIntegrationStep);
             // TODO: Detect failure to open spreadsheet?
         };
 
         var info = NSBundle.MainBundle.InfoDictionary;
-        var applicationInfo = $"{info["CFBundleName"]} ({info["CFBundleVersion"]})";
+        var applicationInfo = $"{info?["CFBundleName"]} ({info?["CFBundleVersion"]})";
         _outlineRoot = new()
         {
             Container =
@@ -491,7 +494,7 @@ The Accuracy column contains the probability that the Gender is correct based up
         {
             if (link is NSUrl url && string.IsNullOrEmpty(url.Scheme))
             {
-                var s = url.ToString();
+                var s = url.ToString() ?? string.Empty;
                 if (s.StartsWith("step="))
                 {
                     if (long.TryParse(s[5..], out var n))

@@ -29,7 +29,8 @@ public class HtmlToNsAttributedStringValueConverter : NSValueTransformer
 #pragma warning restore CA1422 // Validate platform compatibility
         color.GetRgba(out var r, out var g, out var b, out _);
         html = $"<span style=\"font-family: {font!.DisplayName}; font-size: {font.PointSize * 1.1}px; color: #{ToHexByte(r)}{ToHexByte(g)}{ToHexByte(b)}\">{html.Replace("\n", "<br/>\n")}</span>";
-        return NSAttributedString.CreateWithHTML(NSData.FromString(html), out _);
+        return NSAttributedString.CreateWithHTML(NSData.FromString(html), out _)
+            ?? new NSAttributedString();
     }
 
     public override NSObject TransformedValue(NSObject? value)

@@ -29,7 +29,7 @@ public class XlsxReader : TextRecordReader
 {
     static XlsxReader()
     {
-        ExcelPackage.LicenseContext ??= LicenseContext.NonCommercial;
+        EpplusLicense.Configure();
     }
 
     private int _headerIndex;

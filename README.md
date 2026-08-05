@@ -38,3 +38,20 @@ This project is licensed under the MIT License. See the LICENSE.md file for deta
 
 GnE was created and is maintained by **Richardson Oliver LLP**.
 
+## Building
+
+GnE requires the .NET 10 SDK and the .NET macOS workload. The application is
+published as a self-contained Apple-silicon build, so target Macs do not need a
+separate .NET runtime installation.
+
+EPPlus 8 must be licensed before spreadsheet processing. Set the
+`EPPlusLicense` environment variable to `Commercial:<key>` for an authorized
+commercial build. Richardson Oliver release builds instead generate the ignored
+`appsettings.Secrets.json` file from `appsettings.Secrets.template.json` using
+1Password; the key is never stored directly in this repository.
+
+Richardson Oliver release maintainers can run
+`scripts/build_and_notarize.zsh` to inject the licensed settings, build and sign
+the application and installer, submit it for Apple notarization, staple the
+ticket, validate Gatekeeper acceptance, and write the final package to
+`artifacts/`.

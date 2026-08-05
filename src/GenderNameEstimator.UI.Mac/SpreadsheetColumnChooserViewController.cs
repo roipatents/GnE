@@ -106,9 +106,13 @@ public partial class SpreadsheetColumnChooserViewController : WizardOutlineViewC
                     for (nuint i = 0; i < _model.Columns.Count; i++)
                     {
                         var selectedColumn = selectedColumns[i];
-                        _model.Columns[i].SelectedIndex = (reader.Headers?.Count ?? -1) > selectedColumn
-                            ? selectedColumn
-                            : -1;
+                        var column = _model.Columns[i];
+                        if (column is not null)
+                        {
+                            column.SelectedIndex = (reader.Headers?.Count ?? -1) > selectedColumn
+                                ? selectedColumn
+                                : -1;
+                        }
                     }
                 }
                 _needsTableRefresh = false;

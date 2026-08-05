@@ -108,7 +108,6 @@ public partial class FileChooserViewController : WizardOutlineViewController
         chooser.CanChooseFiles = true;
         chooser.CanCreateDirectories = false;
         chooser.ShowsHiddenFiles = false;
-        chooser.ShowsResizeIndicator = true;
         chooser.Title = _buttonText ?? "";
         var lastFilename = _model.Files.LastOrDefault<FileItem>()?.Name;
         var currentPath = string.IsNullOrEmpty(lastFilename)

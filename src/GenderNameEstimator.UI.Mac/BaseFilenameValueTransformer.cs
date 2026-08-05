@@ -17,8 +17,8 @@ public class BaseFilenameValueTransformer : NSValueTransformer
 
     public override NSObject TransformedValue(NSObject? value)
     {
-        return value is null
-            ? new NSString()
-            : (NSString)Path.GetFileName(value.ToString());
+        return new NSString(value is null
+            ? string.Empty
+            : Path.GetFileName(value.ToString()) ?? string.Empty);
     }
 }
