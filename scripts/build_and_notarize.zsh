@@ -9,6 +9,60 @@ installer_identity="${INSTALLER_IDENTITY:-Developer ID Installer: Richardson Oli
 notary_profile="${NOTARY_PROFILE:-Notary}"
 artifacts_dir="$repo_root/artifacts"
 package_output="$repo_root/src/GenderNameEstimator.UI.Mac/bin/Release/net10.0-macos/GnE-$version.pkg"
+dotnet_command="${DOTNET_COMMAND:-/usr/local/share/dotnet/dotnet}"
+dotnet_user_workload_root="${DOTNET_USER_WORKLOAD_ROOT:-${HOME}/.dotnet}"
+
+if [[ ! -x "$dotnet_command" ]]; then
+  print -u2 "Release packaging requires the official Microsoft .NET SDK. Set DOTNET_COMMAND to its dotnet executable."
+  exit 1
+fi
+
+dotnet_base_path="$($dotnet_command --info | sed -n 's/^ Base Path:[[:space:]]*//p' | head -1)"
+if [[ "$dotnet_base_path" == /opt/homebrew/* ]]; then
+  print -u2 "Homebrew's .NET runtime pack is not relocatable and cannot be used for release packaging."
+  exit 1
+fi
+
+export DOTNETSDK_WORKLOAD_PACK_ROOTS="${DOTNETSDK_WORKLOAD_PACK_ROOTS:-$dotnet_user_workload_root}"
+export DOTNETSDK_WORKLOAD_MANIFEST_ROOTS="${DOTNETSDK_WORKLOAD_MANIFEST_ROOTS:-$dotnet_user_workload_root/sdk-manifests}"
+
+function validate_native_dependencies() {
+  local target_app="$1"
+  local binary dependency
+  local native_binaries=("$target_app/Contents/MacOS/GnE" "$target_app"/Contents/MonoBundle/*.dylib(N))
+
+  for binary in "${native_binaries[@]}"; do
+    while IFS= read -r dependency; do
+      case "$dependency" in
+        @*|/System/*|/usr/lib/*) ;;
+        *)
+          print -u2 "Non-relocatable dependency in $binary: $dependency"
+          return 1
+          ;;
+      esac
+    done < <(otool -L "$binary" | sed -n '2,$s/^[[:space:]]*\([^[:space:]]*\).*/\1/p')
+  done
+}
+
+function smoke_test_app() {
+  local target_app="$1"
+  local smoke_log smoke_pid smoke_status
+  smoke_log="$(mktemp)"
+  "$target_app/Contents/MacOS/GnE" >"$smoke_log" 2>&1 &
+  smoke_pid=$!
+  sleep 3
+  if ! kill -0 "$smoke_pid" 2>/dev/null; then
+    smoke_status=0
+    wait "$smoke_pid" || smoke_status=$?
+    print -u2 "GnE launch smoke test failed with status $smoke_status."
+    tail -40 "$smoke_log" >&2
+    rm -f "$smoke_log"
+    return 1
+  fi
+  kill "$smoke_pid"
+  wait "$smoke_pid" 2>/dev/null || true
+  rm -f "$smoke_log"
+}
 
 if [[ ! "$version" =~ '^[0-9]+\.[0-9]+\.[0-9]+$' ]]; then
   print -u2 "VERSION must contain a semantic version."
@@ -21,10 +75,10 @@ rm -f "$package_output"
 
 "$repo_root/scripts/inject_secrets.zsh"
 
-dotnet clean "$project" --configuration Release
-dotnet clean "$project" --configuration Release --runtime osx-arm64
+"$dotnet_command" clean "$project" --configuration Release
+"$dotnet_command" clean "$project" --configuration Release --runtime osx-arm64
 
-dotnet build "$project" \
+"$dotnet_command" build "$project" \
   --configuration Release \
   -p:CreatePackage=true \
   -p:CodesignKey="$application_identity" \
@@ -50,6 +104,8 @@ if [[ "$(lipo -archs "$app/Contents/MacOS/GnE")" != "arm64" ]]; then
 fi
 
 codesign --verify --deep --strict --verbose=2 "$app"
+validate_native_dependencies "$app"
+smoke_test_app "$app"
 
 packages=("$package_output"(N))
 if (( ${#packages} != 1 )); then
@@ -69,6 +125,7 @@ if (( ${#packaged_apps} != 1 )); then
   exit 1
 fi
 codesign --verify --deep --strict --verbose=2 "${packaged_apps[1]}"
+validate_native_dependencies "${packaged_apps[1]}"
 
 xcrun notarytool submit "$package" --keychain-profile "$notary_profile" --wait
 xcrun stapler staple "$package"

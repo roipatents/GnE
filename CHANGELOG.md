@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.4 - 2026-08-05
+
+- Build the macOS release with Microsoft's relocatable .NET runtime instead of Homebrew's runtime pack.
+- Reject packaged native libraries that depend on Homebrew or other non-system absolute paths.
+- Launch-test the signed application before notarizing and publishing the installer.
+
 ## 1.0.3 - 2026-08-04
 
 - Rebuild the macOS application for Apple silicon on .NET 10.
