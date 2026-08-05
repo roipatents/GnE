@@ -8,7 +8,7 @@ application_identity="${APPLICATION_IDENTITY:-Developer ID Application: Richards
 installer_identity="${INSTALLER_IDENTITY:-Developer ID Installer: Richardson Oliver Law Group LLP (2B7MH5Z594)}"
 notary_profile="${NOTARY_PROFILE:-Notary}"
 artifacts_dir="$repo_root/artifacts"
-package_output="$repo_root/src/GenderNameEstimator.UI.Mac/bin/Release/net10.0-macos/osx-arm64/GnE-$version.pkg"
+package_output="$repo_root/src/GenderNameEstimator.UI.Mac/bin/Release/net10.0-macos/GnE-$version.pkg"
 
 if [[ ! "$version" =~ '^[0-9]+\.[0-9]+\.[0-9]+$' ]]; then
   print -u2 "VERSION must contain a semantic version."
