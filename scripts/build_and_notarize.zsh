@@ -11,7 +11,6 @@ notary_profile="${NOTARY_PROFILE:-Notary}"
 artifacts_dir="$repo_root/artifacts"
 package_output="$repo_root/src/GenderNameEstimator.UI.Mac/bin/Release/net10.0-macos/GnE-$version.pkg"
 dotnet_command="${DOTNET_COMMAND:-/usr/local/share/dotnet/dotnet}"
-dotnet_user_workload_root="${DOTNET_USER_WORKLOAD_ROOT:-${HOME}/.dotnet}"
 
 if [[ ! -x "$dotnet_command" ]]; then
   print -u2 "Release packaging requires the official Microsoft .NET SDK. Set DOTNET_COMMAND to its dotnet executable."
@@ -23,9 +22,6 @@ if [[ "$dotnet_base_path" == /opt/homebrew/* ]]; then
   print -u2 "Homebrew's .NET runtime pack is not relocatable and cannot be used for release packaging."
   exit 1
 fi
-
-export DOTNETSDK_WORKLOAD_PACK_ROOTS="${DOTNETSDK_WORKLOAD_PACK_ROOTS:-$dotnet_user_workload_root}"
-export DOTNETSDK_WORKLOAD_MANIFEST_ROOTS="${DOTNETSDK_WORKLOAD_MANIFEST_ROOTS:-$dotnet_user_workload_root/sdk-manifests}"
 
 function validate_native_dependencies() {
   local target_app="$1"

@@ -22,3 +22,4 @@
 - EPPlus 8 uses the purchased commercial key injected from 1Password into an ignored build input; the licensed configuration may be distributed in the package but is not stored in Git.
 - `System.CommandLine` remains on its existing beta because the stable 2.0 API requires a separate CLI source migration; the macOS release asset does not include the command-line project.
 - GnE 1.0.3 installs successfully through JAMF but cannot launch: Homebrew's .NET 10 runtime pack links `libSystem.IO.Compression.Native.dylib` to Homebrew Brotli libraries, which hardened runtime rejects because they have a different signing Team ID.
+- Resolved build-environment dependency: the official SDK now owns the macOS 26.5 workload, so release packaging no longer needs user-workload-root overrides.
