@@ -19,13 +19,16 @@ mkdir -p "$artifacts_dir"
 
 "$repo_root/scripts/inject_secrets.zsh"
 
+dotnet clean "$project" --configuration Release
+dotnet clean "$project" --configuration Release --runtime osx-arm64
+
 dotnet build "$project" \
   --configuration Release \
   -p:CreatePackage=true \
   -p:CodesignKey="$application_identity" \
   -p:PackageSigningKey="$installer_identity"
 
-app="$repo_root/src/GenderNameEstimator.UI.Mac/bin/Release/net10.0-macos/osx-arm64/GnE.app"
+app="$repo_root/src/GenderNameEstimator.UI.Mac/bin/Release/net10.0-macos/GnE.app"
 if [[ ! -d "$app" ]]; then
   print -u2 "Expected GnE.app build output was not found."
   exit 1

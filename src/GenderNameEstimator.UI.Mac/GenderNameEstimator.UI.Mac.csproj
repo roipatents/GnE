@@ -15,13 +15,13 @@
     <Description>Estimates the gender of a person based upon name and country of origin using WGND data</Description>
     <Authors>Richardson Oliver Insights, LLC</Authors>
 	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+	<PropertyGroup Condition="'$(Configuration)' == 'Debug'">
 		<CreatePackage>false</CreatePackage>
 		<UseSGen>false</UseSGen>
 		<LinkMode>None</LinkMode>
 		<WarningLevel>4</WarningLevel>
 	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+	<PropertyGroup Condition="'$(Configuration)' == 'Release'">
     <!-- EPPlus and System.Data use reflection and XML serialization paths that are not trim-safe. -->
     <LinkMode>None</LinkMode>
     <UseHardenedRuntime>true</UseHardenedRuntime>
