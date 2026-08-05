@@ -4,6 +4,7 @@ set -euo pipefail
 repo_root="${0:A:h:h}"
 version="$(sed -n '1{s/\r$//;p;q;}' "$repo_root/VERSION")"
 project="$repo_root/src/GenderNameEstimator.UI.Mac/GenderNameEstimator.UI.Mac.csproj"
+solution="$repo_root/GenderNameEstimator.sln"
 application_identity="${APPLICATION_IDENTITY:-Developer ID Application: Richardson Oliver Law Group LLP (2B7MH5Z594)}"
 installer_identity="${INSTALLER_IDENTITY:-Developer ID Installer: Richardson Oliver Law Group LLP (2B7MH5Z594)}"
 notary_profile="${NOTARY_PROFILE:-Notary}"
@@ -75,6 +76,7 @@ rm -f "$package_output"
 
 "$repo_root/scripts/inject_secrets.zsh"
 
+"$dotnet_command" test "$solution" --configuration Release
 "$dotnet_command" clean "$project" --configuration Release
 "$dotnet_command" clean "$project" --configuration Release --runtime osx-arm64
 
@@ -126,6 +128,7 @@ if (( ${#packaged_apps} != 1 )); then
 fi
 codesign --verify --deep --strict --verbose=2 "${packaged_apps[1]}"
 validate_native_dependencies "${packaged_apps[1]}"
+smoke_test_app "${packaged_apps[1]}"
 
 xcrun notarytool submit "$package" --keychain-profile "$notary_profile" --wait
 xcrun stapler staple "$package"
