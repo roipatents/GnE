@@ -8,6 +8,7 @@ application_identity="${APPLICATION_IDENTITY:-Developer ID Application: Richards
 installer_identity="${INSTALLER_IDENTITY:-Developer ID Installer: Richardson Oliver Law Group LLP (2B7MH5Z594)}"
 notary_profile="${NOTARY_PROFILE:-Notary}"
 artifacts_dir="$repo_root/artifacts"
+package_output="$repo_root/src/GenderNameEstimator.UI.Mac/bin/Release/net10.0-macos/osx-arm64/GnE-$version.pkg"
 
 if [[ ! "$version" =~ '^[0-9]+\.[0-9]+\.[0-9]+$' ]]; then
   print -u2 "VERSION must contain a semantic version."
@@ -16,6 +17,7 @@ fi
 
 rm -rf "$artifacts_dir"
 mkdir -p "$artifacts_dir"
+rm -f "$package_output"
 
 "$repo_root/scripts/inject_secrets.zsh"
 
@@ -49,7 +51,7 @@ fi
 
 codesign --verify --deep --strict --verbose=2 "$app"
 
-packages=("$repo_root"/src/GenderNameEstimator.UI.Mac/bin/Release/net10.0-macos/osx-arm64/GnE-"$version".pkg(N))
+packages=("$package_output"(N))
 if (( ${#packages} != 1 )); then
   print -u2 "Expected exactly one GnE-$version.pkg build output; found ${#packages}."
   exit 1
@@ -57,6 +59,17 @@ fi
 
 package="${packages[1]}"
 pkgutil --check-signature "$package"
+
+inspection_dir="$(mktemp -d)"
+trap 'rm -rf "$inspection_dir"' EXIT
+pkgutil --expand-full "$package" "$inspection_dir/expanded"
+packaged_apps=("$inspection_dir"/expanded/**/GnE.app(N))
+if (( ${#packaged_apps} != 1 )); then
+  print -u2 "Expected exactly one GnE.app in the installer; found ${#packaged_apps}."
+  exit 1
+fi
+codesign --verify --deep --strict --verbose=2 "${packaged_apps[1]}"
+
 xcrun notarytool submit "$package" --keychain-profile "$notary_profile" --wait
 xcrun stapler staple "$package"
 xcrun stapler validate "$package"
