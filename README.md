@@ -17,9 +17,9 @@ individual based upon their first name and country of origin.
   built the tool will conform to your specific ways of tracking your
   inventor data, and we provide no guarantee of quality or accuracy.
 
-- No claim of copyright is made in any of the WIPO supplied data lookup
-  tables. Licensed under the Creative Commons CC0 1.0 Universal -
-  https://creativecommons.org/publicdomain/zero/1.0/
+- No claim of copyright is made in the supplied WIPO data lookup table.
+  The upstream World Gender-Name Dictionary is distributed by WIPO under
+  the MIT License: https://github.com/IES-platform/r4r_gender
 
 ## **License**
 

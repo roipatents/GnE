@@ -280,7 +280,7 @@ public class XlsxProcessor : FileProcessor
         // NOTE: These long text values are set AFTER autosizing
         worksheet.Cells["B5"].Value = $"First Name = {GetColumnNameForSummary(options.FirstName, reader)}, Country Code = {GetColumnNameForSummary(options.CountryCode, reader)}, Disclosure ID = {GetColumnNameForSummary(options.DisclosureId, reader)}, Person ID = {GetColumnNameForSummary(options.PersonId, reader)}";
 
-        worksheet.Cells["A7"].Value = "Program code released by Richardson Oliver Insights under CC-BY-SA 40 license. Find out how to contribute and help Diversity Equity and Inclusion initiatives in the inventor base and download/updates at:";
+        worksheet.Cells["A7"].Value = "Program code released by Richardson Oliver Insights under the MIT License. Find out how to contribute and help Diversity Equity and Inclusion initiatives in the inventor base and download/updates at:";
 
         worksheet.Cells["A10"].Value = "Learn about the Diversity Pledge at:";
 

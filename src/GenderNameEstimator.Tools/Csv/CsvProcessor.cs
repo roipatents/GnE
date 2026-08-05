@@ -105,7 +105,7 @@ public class CsvProcessor : FileProcessor
         writer.WriteLine(GetColumnNameForSummary(options.PersonId, reader));
         writer.WriteLine();
 
-        writer.WriteLine("Program code released by Richardson Oliver Insights under CC-BY-SA 40 license. Find out how to contribute and help Diversity Equity and Inclusion initiatives in the inventor base and download/updates at:");
+        writer.WriteLine("Program code released by Richardson Oliver Insights under the MIT License. Find out how to contribute and help Diversity Equity and Inclusion initiatives in the inventor base and download/updates at:");
         writer.WriteLine("https://roipatents.com/");
         writer.WriteLine();
 

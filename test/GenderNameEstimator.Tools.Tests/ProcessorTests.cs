@@ -140,7 +140,7 @@ Dictionary,WIPO World Gender-Name Dictionary 2.0
 Data source,Sheet 1
 Columns Used,First Name = 'first', Country Code = 'country', Disclosure ID = unused, Person ID = unused
 
-Program code released by Richardson Oliver Insights under CC-BY-SA 40 license. Find out how to contribute and help Diversity Equity and Inclusion initiatives in the inventor base and download/updates at:
+Program code released by Richardson Oliver Insights under the MIT License. Find out how to contribute and help Diversity Equity and Inclusion initiatives in the inventor base and download/updates at:
 https://roipatents.com/
 
 Learn about the Diversity Pledge at:
@@ -199,7 +199,7 @@ Generated	{DateTime.Today:MMMM d, yyyy}
 Dictionary	WIPO World Gender-Name Dictionary 2.0
 Columns Used	First Name = 'first', Country Code = 'country', Disclosure ID = unused, Person ID = unused
 
-Program code released by Richardson Oliver Insights under CC-BY-SA 40 license. Find out how to contribute and help Diversity Equity and Inclusion initiatives in the inventor base and download/updates at:
+Program code released by Richardson Oliver Insights under the MIT License. Find out how to contribute and help Diversity Equity and Inclusion initiatives in the inventor base and download/updates at:
 https://roipatents.com/
 
 Learn about the Diversity Pledge at:
