@@ -4,9 +4,9 @@
 - [x] Upgrade the public project to .NET 10 and compatible public package references.
 - [x] Correct the public, self-contained macOS packaging and metadata workflow.
 - [x] Build and test the arm64 application with the current Xcode toolchain.
-- [ ] Sign the app and installer with the ROL Developer ID identities.
-- [ ] Notarize and staple the installer, then verify Gatekeeper acceptance.
-- [ ] Prepare a no-publication GitHub/JAMF replacement preview for approval.
+- [x] Sign the app and installer with the ROL Developer ID identities.
+- [x] Notarize and staple the installer, then verify Gatekeeper acceptance.
+- [x] Prepare a no-publication GitHub/JAMF replacement preview for approval.
 
 ## Discovered items
 
