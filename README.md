@@ -55,3 +55,12 @@ Richardson Oliver release maintainers can run
 the application and installer, submit it for Apple notarization, staple the
 ticket, validate Gatekeeper acceptance, and write the final package to
 `artifacts/`.
+
+The public repository vendors only the macOS version-synchronization and
+native-dependency portions of `ROI.BuildActions` 1.1.4. During Release packaging
+it relocates the specific Brotli dependency closure introduced by Homebrew's
+.NET runtime pack, includes Brotli's MIT notice, repairs signatures, and rejects
+any remaining non-system absolute native dependency. It also derives the
+finished application's bundle versions from the canonical project version using
+an intermediate partial `Info.plist` and validates them before packaging. The
+private NuGet feed and its credentials are not required to build GnE.

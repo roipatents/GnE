@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
+	<Import Project="..\..\build\ROI.BuildActions\1.1.4\ROI.BuildActions.props" />
 	<PropertyGroup>
 		<TargetFramework>net10.0-macos</TargetFramework>
     <RuntimeIdentifiers>osx-arm64</RuntimeIdentifiers>
@@ -31,6 +32,7 @@
     <CreatePackage>true</CreatePackage>
     <EnablePackageSigning>true</EnablePackageSigning>
     <PackageSigningKey>Developer ID Installer: Richardson Oliver Law Group LLP (2B7MH5Z594)</PackageSigningKey>
+		<RoiBuildActionsEnableMacPackageNotarization>true</RoiBuildActionsEnableMacPackageNotarization>
 	</PropertyGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\GenderNameEstimator.Tools\GenderNameEstimator.Tools.csproj" />
@@ -47,4 +49,5 @@
 			<ResolvedFileToPublish Update="@(ResolvedFileToPublish)" Condition="'%(ResolvedFileToPublish.Extension)' == '.csv' And '%(ResolvedFileToPublish.PublishFolderType)' == ''" PublishFolderType="Assembly" />
 		</ItemGroup>
 	</Target>
+	<Import Project="..\..\build\ROI.BuildActions\1.1.4\ROI.BuildActions.targets" />
 </Project>

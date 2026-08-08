@@ -2,10 +2,11 @@
 
 - [ ] Repair the GnE 1.0.3 launch failure found during the JAMF pilot. (in progress)
   - [x] Diagnose the crash as a Homebrew-linked Brotli dependency in the bundled .NET compression library.
-  - [x] Require the official Microsoft .NET SDK for release packaging and reject non-system native dependencies.
+  - [x] Default release packaging to the official Microsoft .NET SDK and reject non-system native dependencies.
+  - [x] Vendor the public-safe ROI.BuildActions 1.1.4 version synchronization, Brotli repair, and native-dependency validation logic without private-feed or secret-injection configuration.
   - [x] Bump to 1.0.4 with release notes and add a signed-app launch smoke test.
-  - [ ] Build, test, sign, notarize, staple, and launch-verify the replacement package.
-  - [ ] Publish an immutable 1.0.4 release and replace the two-computer JAMF pilot policy package.
+  - [x] Rebuild, test, sign, notarize, staple, and launch-verify 1.0.4 with vendored Build Actions 1.1.4.
+  - [ ] Publish an immutable 1.0.4 release and replace 1.0.3 in the all-computers JAMF upgrade and enrollment policies.
 
 - [x] Establish proposed release version 1.0.3 from current `main`.
 - [x] Upgrade the public project to .NET 10 and compatible public package references.
@@ -18,7 +19,7 @@
 ## Discovered items
 
 - Existing `v1.0.2` package signature is invalid and the tag predates substantial changes now on `main`.
-- The public project must not consume the private `ROI.BuildActions` package feed.
+- The public project does not consume the private `ROI.BuildActions` package feed; its selected public-safe 1.1.4 macOS version and dependency logic is vendored with exact source provenance.
 - EPPlus 8 uses the purchased commercial key injected from 1Password into an ignored build input; the licensed configuration may be distributed in the package but is not stored in Git.
 - `System.CommandLine` remains on its existing beta because the stable 2.0 API requires a separate CLI source migration; the macOS release asset does not include the command-line project.
 - GnE 1.0.3 installs successfully through JAMF but cannot launch: Homebrew's .NET 10 runtime pack links `libSystem.IO.Compression.Native.dylib` to Homebrew Brotli libraries, which hardened runtime rejects because they have a different signing Team ID.

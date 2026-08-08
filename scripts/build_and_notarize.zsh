@@ -17,12 +17,6 @@ if [[ ! -x "$dotnet_command" ]]; then
   exit 1
 fi
 
-dotnet_base_path="$($dotnet_command --info | sed -n 's/^ Base Path:[[:space:]]*//p' | head -1)"
-if [[ "$dotnet_base_path" == /opt/homebrew/* ]]; then
-  print -u2 "Homebrew's .NET runtime pack is not relocatable and cannot be used for release packaging."
-  exit 1
-fi
-
 function validate_native_dependencies() {
   local target_app="$1"
   local binary dependency

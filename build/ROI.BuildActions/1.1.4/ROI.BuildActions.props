@@ -1,0 +1,22 @@
+<Project>
+  <!--
+    Public-safe defaults for the selected ROI.BuildActions 1.1.4 macOS tasks
+    vendored by GnE. No package-feed or secret-injection settings are included.
+  -->
+  <PropertyGroup>
+    <RoiBuildActionsEnableMacPackageNotarization Condition="'$(RoiBuildActionsEnableMacPackageNotarization)' == ''">false</RoiBuildActionsEnableMacPackageNotarization>
+    <RoiBuildActionsEnableMacBundleVersionSynchronization Condition="'$(RoiBuildActionsEnableMacBundleVersionSynchronization)' == ''">true</RoiBuildActionsEnableMacBundleVersionSynchronization>
+    <RoiBuildActionsPlutilCli Condition="'$(RoiBuildActionsPlutilCli)' == ''">/usr/bin/plutil</RoiBuildActionsPlutilCli>
+    <RoiBuildActionsMacPackageCreationTarget Condition="'$(RoiBuildActionsMacPackageCreationTarget)' == ''">_CreateInstaller</RoiBuildActionsMacPackageCreationTarget>
+    <RoiBuildActionsOtoolCli Condition="'$(RoiBuildActionsOtoolCli)' == ''">/usr/bin/otool</RoiBuildActionsOtoolCli>
+    <RoiBuildActionsEnableMacNativeDependencyValidation Condition="'$(RoiBuildActionsEnableMacNativeDependencyValidation)' == ''">true</RoiBuildActionsEnableMacNativeDependencyValidation>
+    <RoiBuildActionsMacAdditionalAllowedNativeDependencyPrefixes Condition="'$(RoiBuildActionsMacAdditionalAllowedNativeDependencyPrefixes)' == ''"></RoiBuildActionsMacAdditionalAllowedNativeDependencyPrefixes>
+    <RoiBuildActionsDisableMacHomebrewBrotliVendoring Condition="'$(RoiBuildActionsDisableMacHomebrewBrotliVendoring)' == ''">false</RoiBuildActionsDisableMacHomebrewBrotliVendoring>
+    <RoiBuildActionsEnableMacHomebrewBrotliVendoring Condition="'$(RoiBuildActionsEnableMacHomebrewBrotliVendoring)' == ''">true</RoiBuildActionsEnableMacHomebrewBrotliVendoring>
+    <RoiBuildActionsMacHomebrewPrefix Condition="'$(RoiBuildActionsMacHomebrewPrefix)' == ''">/opt/homebrew</RoiBuildActionsMacHomebrewPrefix>
+    <_RoiBuildActionsIsMacOS Condition="'$(_RoiBuildActionsIsMacOS)' == ''">$([MSBuild]::IsOSPlatform('OSX'))</_RoiBuildActionsIsMacOS>
+    <RoiBuildActionsInstallNameToolCli Condition="'$(RoiBuildActionsInstallNameToolCli)' == ''">/usr/bin/install_name_tool</RoiBuildActionsInstallNameToolCli>
+    <RoiBuildActionsLipoCli Condition="'$(RoiBuildActionsLipoCli)' == ''">/usr/bin/lipo</RoiBuildActionsLipoCli>
+    <RoiBuildActionsCodesignCli Condition="'$(RoiBuildActionsCodesignCli)' == ''">/usr/bin/codesign</RoiBuildActionsCodesignCli>
+  </PropertyGroup>
+</Project>
