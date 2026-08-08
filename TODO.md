@@ -9,6 +9,7 @@
   - [ ] Publish an immutable 1.0.4 release and replace 1.0.3 in the all-computers JAMF upgrade and enrollment policies.
 
 - [x] Establish proposed release version 1.0.3 from current `main`.
+- [x] Restore the standard `rol-profile` notarization keychain default after creating and validating the matching local profile.
 - [x] Upgrade the public project to .NET 10 and compatible public package references.
 - [x] Correct the public, self-contained macOS packaging and metadata workflow.
 - [x] Build and test the arm64 application with the current Xcode toolchain.
