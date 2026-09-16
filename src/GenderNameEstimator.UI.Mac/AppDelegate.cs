@@ -7,8 +7,21 @@ public class AppDelegate : NSApplicationDelegate
 
     public override void DidFinishLaunching(NSNotification notification)
     {
-        // Insert code here to initialize your application
-        NSApplication.SharedApplication.EnumerateWindows(NSWindowListOptions.OrderedFrontToBack, SetMainWindow);
+        var application = NSApplication.SharedApplication;
+        application.EnumerateWindows(NSWindowListOptions.OrderedFrontToBack, SetMainWindow);
+
+        // A package or device-management launch may not activate the application.
+        // Explicitly present the storyboard window so launch cannot appear to fail
+        // while GnE continues running behind the foreground application.
+        if (OperatingSystem.IsMacOSVersionAtLeast(14))
+        {
+            application.Activate();
+        }
+        else
+        {
+            application.ActivateIgnoringOtherApps(true);
+        }
+        _mainWindow?.MakeKeyAndOrderFront(this);
     }
 
     private void SetMainWindow(NSWindow window, ref bool stop)

@@ -1,12 +1,26 @@
 # GnE signed package repair
 
+- [x] Remove duplicate installed/built GnE application bundles and the deployed `/Applications/GnE.app` copy.
+
+- [ ] Repair the macOS launch presentation failure as GnE 1.0.5. (in progress)
+  - [x] Confirm 1.0.4 remains alive and creates its main window instead of producing a crash report.
+  - [x] Explicitly activate the application and bring the main storyboard window forward at launch.
+  - [x] Strengthen launch validation to require a visible, active main window.
+  - [x] Move the unavailable .NET 10.0.302 SDK pin to the installed 10.0.400 feature band.
+  - [x] Build and test on the available macOS 26.6.2 host.
+  - [x] Build, sign, notarize, and staple the 1.0.5 installer.
+  - [x] Commit and push the validated 1.0.5 source on `main`.
+  - [x] Create and push `v1.0.5`, then publish the verified installer on GitHub.
+  - [ ] Validate on macOS 27. (blocked: no macOS 27 host is available in this task)
+
 - [ ] Repair the GnE 1.0.3 launch failure found during the JAMF pilot. (in progress)
   - [x] Diagnose the crash as a Homebrew-linked Brotli dependency in the bundled .NET compression library.
   - [x] Default release packaging to the official Microsoft .NET SDK and reject non-system native dependencies.
   - [x] Vendor the public-safe ROI.BuildActions 1.1.4 version synchronization, Brotli repair, and native-dependency validation logic without private-feed or secret-injection configuration.
   - [x] Bump to 1.0.4 with release notes and add a signed-app launch smoke test.
   - [x] Rebuild, test, sign, notarize, staple, and launch-verify 1.0.4 with vendored Build Actions 1.1.4.
-  - [ ] Publish an immutable 1.0.4 release and replace 1.0.3 in the all-computers JAMF upgrade and enrollment policies.
+  - [x] Publish the immutable 1.0.4 GitHub release.
+  - [ ] Replace 1.0.3 in the all-computers JAMF upgrade and enrollment policies.
 
 - [x] Establish proposed release version 1.0.3 from current `main`.
 - [x] Restore the standard `rol-profile` notarization keychain default after creating and validating the matching local profile.

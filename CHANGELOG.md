@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.5 - 2026-09-15
+
+- Activate GnE explicitly at launch and bring its storyboard window to the front.
+- Prevent managed or background launches from appearing to crash while the application remains open behind another app.
+- Build with the current .NET 10.0.400 SDK feature band.
+
 ## 1.0.4 - 2026-08-05
 
 - Build the macOS release with Microsoft's relocatable .NET runtime instead of Homebrew's runtime pack.

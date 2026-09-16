@@ -11,6 +11,7 @@ notary_profile="${NOTARY_PROFILE:-rol-profile}"
 artifacts_dir="$repo_root/artifacts"
 package_output="$repo_root/src/GenderNameEstimator.UI.Mac/bin/Release/net10.0-macos/GnE-$version.pkg"
 dotnet_command="${DOTNET_COMMAND:-/usr/local/share/dotnet/dotnet}"
+window_probe="$repo_root/scripts/verify_app_window.swift"
 
 if [[ ! -x "$dotnet_command" ]]; then
   print -u2 "Release packaging requires the official Microsoft .NET SDK. Set DOTNET_COMMAND to its dotnet executable."
@@ -47,6 +48,14 @@ function smoke_test_app() {
     wait "$smoke_pid" || smoke_status=$?
     print -u2 "GnE launch smoke test failed with status $smoke_status."
     tail -40 "$smoke_log" >&2
+    rm -f "$smoke_log"
+    return 1
+  fi
+  if ! /usr/bin/xcrun swift "$window_probe" "$smoke_pid"; then
+    print -u2 "GnE launch smoke test did not observe an active application window."
+    tail -40 "$smoke_log" >&2
+    kill "$smoke_pid" 2>/dev/null || true
+    wait "$smoke_pid" 2>/dev/null || true
     rm -f "$smoke_log"
     return 1
   fi
