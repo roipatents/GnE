@@ -1297,7 +1297,6 @@
                         </subviews>
                     </view>
                     <connections>
-                        <outlet property="ColumnSelectionMenu" destination="XL4-dy-7mb" id="hQw-iH-W5x"/>
                         <outlet property="ContextMenu" destination="XL4-dy-7mb" id="eRi-G8-LHY"/>
                         <outlet property="RowColumn" destination="uLK-Sl-dFh" id="8fk-qz-0zh"/>
                         <outlet property="TableView" destination="FKa-Kd-k3T" id="wja-JQ-QOu"/>

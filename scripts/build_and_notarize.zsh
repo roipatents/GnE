@@ -12,6 +12,7 @@ artifacts_dir="$repo_root/artifacts"
 package_output="$repo_root/src/GenderNameEstimator.UI.Mac/bin/Release/net10.0-macos/GnE-$version.pkg"
 dotnet_command="${DOTNET_COMMAND:-/usr/local/share/dotnet/dotnet}"
 window_probe="$repo_root/scripts/verify_app_window.swift"
+generated_entitlements="$repo_root/src/GenderNameEstimator.UI.Mac/obj/Release/net10.0-macos/Entitlements.xcent"
 
 if [[ ! -x "$dotnet_command" ]]; then
   print -u2 "Release packaging requires the official Microsoft .NET SDK. Set DOTNET_COMMAND to its dotnet executable."
@@ -51,6 +52,8 @@ function smoke_test_app() {
     rm -f "$smoke_log"
     return 1
   fi
+  /usr/bin/open "$target_app"
+  sleep 1
   if ! /usr/bin/xcrun swift "$window_probe" "$smoke_pid"; then
     print -u2 "GnE launch smoke test did not observe an active application window."
     tail -40 "$smoke_log" >&2
@@ -81,9 +84,8 @@ rm -f "$package_output"
 
 "$dotnet_command" build "$project" \
   --configuration Release \
-  -p:CreatePackage=true \
-  -p:CodesignKey="$application_identity" \
-  -p:PackageSigningKey="$installer_identity"
+  -p:CreatePackage=false \
+  -p:CodesignKey="$application_identity"
 
 app="$repo_root/src/GenderNameEstimator.UI.Mac/bin/Release/net10.0-macos/GnE.app"
 if [[ ! -d "$app" ]]; then
@@ -104,9 +106,27 @@ if [[ "$(lipo -archs "$app/Contents/MacOS/GnE")" != "arm64" ]]; then
   exit 1
 fi
 
+if [[ ! -f "$generated_entitlements" ]]; then
+  print -u2 "Expected generated macOS entitlements were not found."
+  exit 1
+fi
+
+codesign \
+  --force \
+  --sign "$application_identity" \
+  --timestamp \
+  --options runtime \
+  --entitlements "$generated_entitlements" \
+  "$app"
 codesign --verify --deep --strict --verbose=2 "$app"
 validate_native_dependencies "$app"
 smoke_test_app "$app"
+
+productbuild \
+  --sign "$installer_identity" \
+  --component "$app" \
+  /Applications \
+  "$package_output"
 
 packages=("$package_output"(N))
 if (( ${#packages} != 1 )); then

@@ -1,6 +1,6 @@
 ﻿namespace GenderNameEstimator.UI.Mac;
 
-[Register(nameof(HtmlToNsAttributedStringValueConverter))]
+[Register("HtmlToNSAttributedStringValueConverter")]
 public class HtmlToNsAttributedStringValueConverter : NSValueTransformer
 {
     public HtmlToNsAttributedStringValueConverter()

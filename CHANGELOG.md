@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.6 - 2026-09-17
+
+- Restore the storyboard-compatible HTML value-transformer registration and remove a stale outlet so the main controller loads instead of leaving a blank window.
+- Use an explicit private URL scheme for in-app prompt links so Choose and Run commands are handled by GnE while external links remain with macOS.
+- Require release smoke tests to observe the GnE controls and confirm that the Choose link opens the source spreadsheet picker before accepting a package.
+- Create the installer only after the final signed app is stable, preventing post-signing bundle changes from invalidating the app or package.
+- Sign with the generated .NET JIT entitlement and remove a hidden marker from the entitlement source so the installed app retains a valid signature.
+
 ## 1.0.5 - 2026-09-15
 
 - Activate GnE explicitly at launch and bring its storyboard window to the front.
