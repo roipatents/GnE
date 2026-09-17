@@ -1,41 +1,29 @@
-# GnE signed package repair
+# GnE release work
 
-- [x] Remove duplicate installed/built GnE application bundles and the deployed `/Applications/GnE.app` copy.
-
-- [ ] Repair the macOS launch presentation failure as GnE 1.0.5. (in progress)
-  - [x] Confirm 1.0.4 remains alive and creates its main window instead of producing a crash report.
+- [ ] Validate the GnE 1.0.5 macOS launch fix on macOS 27. (blocked: no macOS 27 test host is currently available)
+  - [x] Confirm the previous release remains alive and creates its main window instead of producing a crash report.
   - [x] Explicitly activate the application and bring the main storyboard window forward at launch.
   - [x] Strengthen launch validation to require a visible, active main window.
-  - [x] Move the unavailable .NET 10.0.302 SDK pin to the installed 10.0.400 feature band.
-  - [x] Build and test on the available macOS 26.6.2 host.
-  - [x] Build, sign, notarize, and staple the 1.0.5 installer.
-  - [x] Commit and push the validated 1.0.5 source on `main`.
-  - [x] Create and push `v1.0.5`, then publish the verified installer on GitHub.
-  - [ ] Validate on macOS 27. (blocked: no macOS 27 host is available in this task)
+  - [x] Update the .NET SDK pin to the 10.0.400 feature band.
+  - [x] Build and test on macOS 26.6.2.
+  - [x] Build, sign, notarize, staple, and publish the 1.0.5 installer.
+  - [x] Commit and push the validated 1.0.5 source and release tag.
 
-- [ ] Repair the GnE 1.0.3 launch failure found during the JAMF pilot. (in progress)
-  - [x] Diagnose the crash as a Homebrew-linked Brotli dependency in the bundled .NET compression library.
+- [x] Repair the native-library signing failure in GnE 1.0.3 as GnE 1.0.4.
+  - [x] Diagnose the launch failure as a non-system Brotli dependency in the bundled .NET compression library.
   - [x] Default release packaging to the official Microsoft .NET SDK and reject non-system native dependencies.
-  - [x] Vendor the public-safe ROI.BuildActions 1.1.4 version synchronization, Brotli repair, and native-dependency validation logic without private-feed or secret-injection configuration.
-  - [x] Bump to 1.0.4 with release notes and add a signed-app launch smoke test.
-  - [x] Rebuild, test, sign, notarize, staple, and launch-verify 1.0.4 with vendored Build Actions 1.1.4.
-  - [x] Publish the immutable 1.0.4 GitHub release.
-  - [ ] Replace 1.0.3 in the all-computers JAMF upgrade and enrollment policies.
+  - [x] Vendor the public-safe macOS version synchronization, Brotli repair, and native-dependency validation logic required by this repository.
+  - [x] Build, test, sign, notarize, staple, launch-verify, and publish the 1.0.4 release.
 
-- [x] Establish proposed release version 1.0.3 from current `main`.
-- [x] Restore the standard `rol-profile` notarization keychain default after creating and validating the matching local profile.
 - [x] Upgrade the public project to .NET 10 and compatible public package references.
 - [x] Correct the public, self-contained macOS packaging and metadata workflow.
 - [x] Build and test the arm64 application with the current Xcode toolchain.
-- [x] Sign the app and installer with the ROL Developer ID identities.
-- [x] Notarize and staple the installer, then verify Gatekeeper acceptance.
-- [x] Prepare a no-publication GitHub/JAMF replacement preview for approval.
+- [x] Add signed-app launch validation and release integrity checks.
 
 ## Discovered items
 
-- Existing `v1.0.2` package signature is invalid and the tag predates substantial changes now on `main`.
-- The public project does not consume the private `ROI.BuildActions` package feed; its selected public-safe 1.1.4 macOS version and dependency logic is vendored with exact source provenance.
-- EPPlus 8 uses the purchased commercial key injected from 1Password into an ignored build input; the licensed configuration may be distributed in the package but is not stored in Git.
+- The existing `v1.0.2` package signature is invalid, and the tag predates substantial changes now on `main`.
+- The public project contains its release-specific macOS build logic directly in the repository.
+- EPPlus 8 requires a commercial license for release builds; licensed configuration is supplied outside Git and is not stored in this repository.
 - `System.CommandLine` remains on its existing beta because the stable 2.0 API requires a separate CLI source migration; the macOS release asset does not include the command-line project.
-- GnE 1.0.3 installs successfully through JAMF but cannot launch: Homebrew's .NET 10 runtime pack links `libSystem.IO.Compression.Native.dylib` to Homebrew Brotli libraries, which hardened runtime rejects because they have a different signing Team ID.
-- Resolved build-environment dependency: the official SDK now owns the macOS 26.5 workload, so release packaging no longer needs user-workload-root overrides.
+- Release packaging uses the official .NET SDK to avoid non-system native dependencies that are incompatible with the hardened runtime.
