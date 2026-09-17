@@ -1,6 +1,6 @@
 # GnE release work
 
-- [ ] Build and locally verify the GnE 1.0.6 release installer. (in progress)
+- [x] Build and locally verify the GnE 1.0.6 release installer.
   - [x] Reject the 1.0.5 candidate after visual testing found a blank application window.
   - [x] Trace the blank window to a case-sensitive value-transformer rename in `v1.0.2` and a stale storyboard outlet.
   - [x] Restore the storyboard-compatible transformer registration and remove the stale outlet.
@@ -10,7 +10,7 @@
   - [x] Make package creation follow the final application signing step so the installer payload remains stable.
   - [x] Correct the malformed entitlement source and require the final signature to use the generated .NET JIT entitlement.
   - [x] Build and sign a fresh installer, then validate the package and extracted app before installation.
-  - [ ] Notarize, staple, and run the final Gatekeeper assessment.
+  - [x] Notarize, staple, and run the final Gatekeeper assessment.
   - [x] Install the newly built package.
   - [x] Verify the installed version, receipt, signature stability, process stability, visible controls, and Choose-link file picker.
 
